@@ -66,4 +66,13 @@ public class InvoiceServiceTest {
         double fare = premiumInvoiceGenerator.calculateFare(distance, time);
         Assert.assertEquals(40, fare, 0.0);
     }
+
+    @Test
+    public void givenDistanceAndTimeForPremium_ShouldReturnMinimumFare() {
+        double distance = 0.1;
+        int time = 1;
+        double fare = premiumInvoiceGenerator.calculateFare(distance, time);
+        Assert.assertEquals(20, fare, 0.0);
+    }
+
 }
