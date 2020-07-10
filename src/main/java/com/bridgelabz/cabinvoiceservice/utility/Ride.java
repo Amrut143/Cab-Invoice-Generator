@@ -1,4 +1,4 @@
-package com.bridgelabz.cabinvoiceservice;
+package com.bridgelabz.cabinvoiceservice.utility;
 
 public class Ride {
     public final double distance;
