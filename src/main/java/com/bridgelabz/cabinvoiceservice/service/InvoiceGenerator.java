@@ -35,8 +35,6 @@ public class InvoiceGenerator {
             if (totalFare < MINIMUM_FARE_NORMAL)
                 return MINIMUM_FARE_NORMAL;
             return totalFare;
-
-
         }
         if (CabCategory.PREMIUM.equals(this.cabCategory)) {
             double totalFare = distance * MINIMUM_COST_PER_KILOMETER_PREMIUM + time * COST_PER_TIME_FOR_PREMIUM;
