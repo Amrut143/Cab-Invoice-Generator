@@ -1,6 +1,7 @@
 package com.bridgelabz.cabinvoiceservicetest;
 
 import com.bridgelabz.cabinvoiceservice.service.InvoiceGenerator;
+import com.bridgelabz.cabinvoiceservice.utility.CabCategory;
 import com.bridgelabz.cabinvoiceservice.utility.InvoiceSummary;
 import com.bridgelabz.cabinvoiceservice.utility.Ride;
 import org.junit.Assert;
@@ -9,18 +10,20 @@ import org.junit.Test;
 
 public class InvoiceServiceTest {
 
-    InvoiceGenerator invoiceGenerator;
+    InvoiceGenerator normalInvoiceGenerator;
+    InvoiceGenerator premiumInvoiceGenerator;
 
     @Before
     public void setUp() {
-        invoiceGenerator = new InvoiceGenerator();
+        normalInvoiceGenerator = new InvoiceGenerator(CabCategory.NORMAL);
+        premiumInvoiceGenerator = new InvoiceGenerator(CabCategory.PREMIUM);
     }
 
     @Test
     public void givenDistanceAndTime_ShouldReturnTotalFare() {
         double distance = 2.0;
         int time = 5;
-        double fare = invoiceGenerator.calculateFare(distance, time);
+        double fare = normalInvoiceGenerator.calculateFare(distance, time);
         Assert.assertEquals(25, fare, 0.0);
     }
 
@@ -28,7 +31,7 @@ public class InvoiceServiceTest {
     public void givenLessDistanceAndTime_ShouldReturnMinimumFare() {
         double distance = 0.1;
         int time = 1;
-        double totalFare = invoiceGenerator.calculateFare(distance, time);
+        double totalFare = normalInvoiceGenerator.calculateFare(distance, time);
         Assert.assertEquals(5, totalFare, 0.0);
     }
 
@@ -38,7 +41,7 @@ public class InvoiceServiceTest {
                 new Ride(2.0, 5),
                 new Ride(0.1, 1)
         };
-        InvoiceSummary summary = invoiceGenerator.calculateFare(rides);
+        InvoiceSummary summary = normalInvoiceGenerator.calculateFare(rides);
         InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30.0);
         Assert.assertEquals(expectedInvoiceSummary, summary);
     }
@@ -50,9 +53,17 @@ public class InvoiceServiceTest {
                 new Ride(2.0, 5),
                 new Ride(0.1, 1)
         };
-        invoiceGenerator.addRide(userId, rides);
-        InvoiceSummary summary = invoiceGenerator.getInvoiceSummary(userId);
+        normalInvoiceGenerator.addRide(userId, rides);
+        InvoiceSummary summary = normalInvoiceGenerator.getInvoiceSummary(userId);
         InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30.0);
         Assert.assertEquals(expectedInvoiceSummary, summary);
+    }
+
+    @Test
+    public void givenDistanceAndTimeForPremium_ShouldReturnTotalFare() {
+        double distance = 2.0;
+        int time = 5;
+        double fare = premiumInvoiceGenerator.calculateFare(distance, time);
+        Assert.assertEquals(40, fare, 0.0);
     }
 }
