@@ -1,5 +1,7 @@
 package com.bridgelabz.cabinvoiceservice.utility;
 
+import com.bridgelabz.cabinvoiceservice.model.Ride;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

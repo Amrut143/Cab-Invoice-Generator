@@ -2,8 +2,8 @@ package com.bridgelabz.cabinvoiceservicetest;
 
 import com.bridgelabz.cabinvoiceservice.service.InvoiceGenerator;
 import com.bridgelabz.cabinvoiceservice.utility.CabCategory;
-import com.bridgelabz.cabinvoiceservice.utility.InvoiceSummary;
-import com.bridgelabz.cabinvoiceservice.utility.Ride;
+import com.bridgelabz.cabinvoiceservice.model.InvoiceSummary;
+import com.bridgelabz.cabinvoiceservice.model.Ride;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

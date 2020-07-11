@@ -1,4 +1,4 @@
-package com.bridgelabz.cabinvoiceservice.utility;
+package com.bridgelabz.cabinvoiceservice.model;
 
 public class InvoiceSummary {
     private final int numOfRides;
